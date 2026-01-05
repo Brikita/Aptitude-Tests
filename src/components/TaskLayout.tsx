@@ -13,6 +13,7 @@ interface TaskLayoutProps {
 export const TaskLayout: React.FC<TaskLayoutProps> = ({ children, title }) => {
   const {
     score,
+    attempts,
     overallTimeRemaining,
     decrementOverallTimer,
     isGameActive,
@@ -66,7 +67,7 @@ export const TaskLayout: React.FC<TaskLayoutProps> = ({ children, title }) => {
       <footer className="bg-white border-t border-slate-200 p-4 flex justify-center">
         <div className="flex items-center gap-2 text-slate-700 font-semibold text-lg">
           <Trophy className="w-5 h-5 text-yellow-500" />
-          <span>Score: {score}</span>
+          <span>Score: {score} / {attempts}</span>
         </div>
       </footer>
     </div>

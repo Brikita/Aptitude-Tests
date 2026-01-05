@@ -10,6 +10,7 @@ export type TaskId =
 
 interface GameState {
   score: number;
+  attempts: number;
   currentTask: TaskId;
   overallTimeRemaining: number; // in seconds
   isGameActive: boolean;
@@ -28,13 +29,14 @@ interface GameState {
 
 export const useGameStore = create<GameState>((set) => ({
   score: 0,
+  attempts: 0,
   currentTask: null,
   overallTimeRemaining: 45 * 60, // 45 minutes default
   isGameActive: false,
 
   setScore: (score) => set({ score }),
-  incrementScore: (amount) => set((state) => ({ score: state.score + amount })),
-  decrementScore: (amount) => set((state) => ({ score: state.score - amount })),
+  incrementScore: (amount) => set((state) => ({ score: state.score + amount, attempts: state.attempts + 1 })),
+  decrementScore: (amount) => set((state) => ({ score: state.score - amount, attempts: state.attempts + 1 })),
   setCurrentTask: (task) => set({ currentTask: task }),
   setOverallTimeRemaining: (time) => set({ overallTimeRemaining: time }),
   decrementOverallTimer: () =>
@@ -46,6 +48,7 @@ export const useGameStore = create<GameState>((set) => ({
   resetGame: () =>
     set({
       score: 0,
+      attempts: 0,
       currentTask: null,
       overallTimeRemaining: 45 * 60,
       isGameActive: false,
