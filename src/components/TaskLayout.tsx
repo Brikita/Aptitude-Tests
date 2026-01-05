@@ -2,7 +2,8 @@
 
 import React, { useEffect } from "react";
 import { useGameStore } from "@/store/useGameStore";
-import { Timer, Trophy } from "lucide-react";
+import { Timer, Trophy, Home } from "lucide-react";
+import Link from "next/link";
 
 interface TaskLayoutProps {
   children: React.ReactNode;
@@ -10,8 +11,13 @@ interface TaskLayoutProps {
 }
 
 export const TaskLayout: React.FC<TaskLayoutProps> = ({ children, title }) => {
-  const { score, overallTimeRemaining, decrementOverallTimer, isGameActive } =
-    useGameStore();
+  const {
+    score,
+    overallTimeRemaining,
+    decrementOverallTimer,
+    isGameActive,
+    endGame,
+  } = useGameStore();
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -33,7 +39,16 @@ export const TaskLayout: React.FC<TaskLayoutProps> = ({ children, title }) => {
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900">
       {/* Header */}
       <header className="bg-white shadow-sm p-4 flex justify-between items-center border-b border-slate-200">
-        <h1 className="text-xl font-bold text-slate-800">{title}</h1>
+        <div className="flex items-center gap-4">
+          <Link
+            href="/"
+            onClick={endGame}
+            className="text-slate-500 hover:text-blue-900 transition-colors"
+          >
+            <Home className="w-6 h-6" />
+          </Link>
+          <h1 className="text-xl font-bold text-slate-800">{title}</h1>
+        </div>
         <div className="flex items-center gap-2 text-slate-600 font-mono text-lg">
           <Timer className="w-5 h-5" />
           <span>{formatTime(overallTimeRemaining)}</span>
