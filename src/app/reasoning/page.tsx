@@ -10,7 +10,7 @@ import {
 import { ArrowRight } from "lucide-react";
 
 export default function ReasoningPage() {
-  const { incrementScore, decrementScore, setCurrentTask } = useGameStore();
+  const { incrementScore, setCurrentTask } = useGameStore();
   const [currentQ, setCurrentQ] = useState<ReasoningQuestion | null>(null);
   const [step, setStep] = useState<"statement" | "question">("statement");
 
@@ -35,7 +35,7 @@ export default function ReasoningPage() {
     if (answer === currentQ.correctAnswer) {
       incrementScore(1);
     } else {
-      decrementScore(1);
+      incrementScore(0);
     }
     loadNewQuestion();
   };
