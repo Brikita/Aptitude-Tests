@@ -35,8 +35,15 @@ export const useGameStore = create<GameState>((set) => ({
   isGameActive: false,
 
   setScore: (score) => set({ score }),
-  incrementScore: (amount) => set((state) => ({ score: state.score + amount, attempts: state.attempts + 1 })),
-  decrementScore: (amount) => set((state) => ({ score: state.score - amount, attempts: state.attempts + 1 })),
+  incrementScore: (amount) =>
+    set((state) => ({
+      score: state.score + amount,
+      attempts: state.attempts + 1,
+    })),
+  decrementScore: (_amount) =>
+    set((state) => ({
+      attempts: state.attempts + 1,
+    })),
   setCurrentTask: (task) => set({ currentTask: task }),
   setOverallTimeRemaining: (time) => set({ overallTimeRemaining: time }),
   decrementOverallTimer: () =>
