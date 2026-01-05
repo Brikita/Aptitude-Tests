@@ -30,7 +30,7 @@ export default function PerceptualSpeedPage() {
     if (count === currentQ.correctCount) {
       incrementScore(1);
     } else {
-      decrementScore(1);
+      incrementScore(0);
     }
     loadNewQuestion();
   };

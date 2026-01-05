@@ -9,7 +9,7 @@ import {
 } from "@/utils/wordMeaningLogic";
 
 export default function WordMeaningPage() {
-  const { incrementScore, decrementScore, setCurrentTask } = useGameStore();
+  const { incrementScore, setCurrentTask } = useGameStore();
   const [currentQ, setCurrentQ] = useState<WordMeaningQuestion | null>(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function WordMeaningPage() {
     if (word === currentQ.oddOneOut) {
       incrementScore(1);
     } else {
-      decrementScore(1);
+      incrementScore(0);
     }
     loadNewQuestion();
   };

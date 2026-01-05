@@ -9,7 +9,7 @@ import {
 } from "@/utils/numberSpeedLogic";
 
 export default function NumberSpeedPage() {
-  const { incrementScore, decrementScore, setCurrentTask } = useGameStore();
+  const { incrementScore, setCurrentTask } = useGameStore();
   const [currentQ, setCurrentQ] = useState<NumberSpeedQuestion | null>(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function NumberSpeedPage() {
     if (num === currentQ.correctAnswer) {
       incrementScore(1);
     } else {
-      decrementScore(1);
+      incrementScore(0);
     }
     loadNewQuestion();
   };

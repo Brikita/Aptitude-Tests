@@ -18,7 +18,6 @@ interface GameState {
   // Actions
   setScore: (score: number) => void;
   incrementScore: (amount: number) => void;
-  decrementScore: (amount: number) => void;
   setCurrentTask: (task: TaskId) => void;
   setOverallTimeRemaining: (time: number) => void;
   decrementOverallTimer: () => void;
@@ -38,10 +37,6 @@ export const useGameStore = create<GameState>((set) => ({
   incrementScore: (amount) =>
     set((state) => ({
       score: state.score + amount,
-      attempts: state.attempts + 1,
-    })),
-  decrementScore: (_amount) =>
-    set((state) => ({
       attempts: state.attempts + 1,
     })),
   setCurrentTask: (task) => set({ currentTask: task }),

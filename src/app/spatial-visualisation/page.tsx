@@ -1,12 +1,18 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { TaskLayout } from '@/components/TaskLayout';
-import { useGameStore } from '@/store/useGameStore';
-import { generateSpatialQuestion, SpatialQuestion } from '@/utils/spatialLogic';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { TaskLayout } from "@/components/TaskLayout";
+import { useGameStore } from "@/store/useGameStore";
+import { generateSpatialQuestion, SpatialQuestion } from "@/utils/spatialLogic";
+import { motion } from "framer-motion";
 
-const SymbolR = ({ mirrored, rotation }: { mirrored: boolean; rotation: number }) => {
+const SymbolR = ({
+  mirrored,
+  rotation,
+}: {
+  mirrored: boolean;
+  rotation: number;
+}) => {
   return (
     <motion.div
       initial={{ rotate: 0 }}
@@ -17,8 +23,8 @@ const SymbolR = ({ mirrored, rotation }: { mirrored: boolean; rotation: number }
       <span
         className="text-6xl font-serif font-bold text-slate-800 select-none"
         style={{
-          transform: mirrored ? 'scaleX(-1)' : 'none',
-          display: 'inline-block',
+          transform: mirrored ? "scaleX(-1)" : "none",
+          display: "inline-block",
         }}
       >
         R
@@ -28,11 +34,11 @@ const SymbolR = ({ mirrored, rotation }: { mirrored: boolean; rotation: number }
 };
 
 export default function SpatialVisualisationPage() {
-  const { incrementScore, decrementScore, setCurrentTask } = useGameStore();
+  const { incrementScore, setCurrentTask } = useGameStore();
   const [currentQ, setCurrentQ] = useState<SpatialQuestion | null>(null);
 
   useEffect(() => {
-    setCurrentTask('spatial-visualisation');
+    setCurrentTask("spatial-visualisation");
     loadNewQuestion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -47,7 +53,7 @@ export default function SpatialVisualisationPage() {
     if (count === currentQ.correctCount) {
       incrementScore(1);
     } else {
-      decrementScore(1);
+      incrementScore(0);
     }
     loadNewQuestion();
   };
@@ -57,16 +63,26 @@ export default function SpatialVisualisationPage() {
   return (
     <TaskLayout title="Spatial Visualisation">
       <div className="flex-1 flex flex-col items-center justify-center w-full max-w-3xl mx-auto">
-        
         <div className="mb-12 text-center">
-          <h2 className="text-2xl text-slate-600 mb-8">How many pairs are the SAME symbol?</h2>
-          
+          <h2 className="text-2xl text-slate-600 mb-8">
+            How many pairs are the SAME symbol?
+          </h2>
+
           <div className="flex justify-center gap-16 mb-12">
             {currentQ.pairs.map((pair, index) => (
-              <div key={index} className="flex flex-col items-center gap-4 p-4 bg-slate-100 rounded-xl">
-                <SymbolR mirrored={pair.topMirrored} rotation={pair.topRotation} />
+              <div
+                key={index}
+                className="flex flex-col items-center gap-4 p-4 bg-slate-100 rounded-xl"
+              >
+                <SymbolR
+                  mirrored={pair.topMirrored}
+                  rotation={pair.topRotation}
+                />
                 <div className="w-full h-px bg-slate-300 my-2"></div>
-                <SymbolR mirrored={pair.bottomMirrored} rotation={pair.bottomRotation} />
+                <SymbolR
+                  mirrored={pair.bottomMirrored}
+                  rotation={pair.bottomRotation}
+                />
               </div>
             ))}
           </div>
@@ -83,7 +99,6 @@ export default function SpatialVisualisationPage() {
             </button>
           ))}
         </div>
-
       </div>
     </TaskLayout>
   );
