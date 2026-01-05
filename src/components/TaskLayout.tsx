@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React, { useEffect } from 'react';
-import { useGameStore } from '@/store/useGameStore';
-import { Timer, Trophy } from 'lucide-react';
+import React, { useEffect } from "react";
+import { useGameStore } from "@/store/useGameStore";
+import { Timer, Trophy } from "lucide-react";
 
 interface TaskLayoutProps {
   children: React.ReactNode;
@@ -10,7 +10,8 @@ interface TaskLayoutProps {
 }
 
 export const TaskLayout: React.FC<TaskLayoutProps> = ({ children, title }) => {
-  const { score, overallTimeRemaining, decrementOverallTimer, isGameActive } = useGameStore();
+  const { score, overallTimeRemaining, decrementOverallTimer, isGameActive } =
+    useGameStore();
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -25,7 +26,7 @@ export const TaskLayout: React.FC<TaskLayoutProps> = ({ children, title }) => {
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
   return (
@@ -42,7 +43,7 @@ export const TaskLayout: React.FC<TaskLayoutProps> = ({ children, title }) => {
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center justify-center p-6">
         <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg p-8 min-h-[600px] flex flex-col relative">
-            {children}
+          {children}
         </div>
       </main>
 
