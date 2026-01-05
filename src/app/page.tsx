@@ -58,18 +58,21 @@ export default function Home() {
 
         <div className="grid gap-4 mb-8">
           {tasks.map((task) => (
-            <div
+            <Link
               key={task.id}
-              className="p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors text-left flex items-center gap-4"
+              href={`/${task.id}`}
+              onClick={handleStart}
+              className="p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors text-left flex items-center gap-4 group"
             >
-              <div className="bg-blue-100 p-2 rounded-full text-blue-900">
+              <div className="bg-blue-100 p-2 rounded-full text-blue-900 group-hover:bg-blue-200 transition-colors">
                 <task.icon className="w-6 h-6" />
               </div>
-              <div>
+              <div className="flex-1">
                 <h3 className="font-bold text-slate-800">{task.title}</h3>
                 <p className="text-sm text-slate-500">{task.description}</p>
               </div>
-            </div>
+              <Play className="w-5 h-5 text-slate-300 group-hover:text-blue-900 transition-colors" />
+            </Link>
           ))}
         </div>
 
