@@ -1,16 +1,21 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { TaskLayout } from '@/components/TaskLayout';
-import { useGameStore } from '@/store/useGameStore';
-import { generatePerceptualSpeedQuestion, PerceptualSpeedQuestion } from '@/utils/perceptualSpeedLogic';
+import React, { useState, useEffect } from "react";
+import { TaskLayout } from "@/components/TaskLayout";
+import { useGameStore } from "@/store/useGameStore";
+import {
+  generatePerceptualSpeedQuestion,
+  PerceptualSpeedQuestion,
+} from "@/utils/perceptualSpeedLogic";
 
 export default function PerceptualSpeedPage() {
   const { incrementScore, decrementScore, setCurrentTask } = useGameStore();
-  const [currentQ, setCurrentQ] = useState<PerceptualSpeedQuestion | null>(null);
+  const [currentQ, setCurrentQ] = useState<PerceptualSpeedQuestion | null>(
+    null
+  );
 
   useEffect(() => {
-    setCurrentTask('perceptual-speed');
+    setCurrentTask("perceptual-speed");
     loadNewQuestion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -35,10 +40,11 @@ export default function PerceptualSpeedPage() {
   return (
     <TaskLayout title="Perceptual Speed">
       <div className="flex-1 flex flex-col items-center justify-center w-full max-w-3xl mx-auto">
-        
         <div className="mb-12 text-center">
-          <h2 className="text-2xl text-slate-600 mb-8">How many pairs match?</h2>
-          
+          <h2 className="text-2xl text-slate-600 mb-8">
+            How many pairs match?
+          </h2>
+
           <div className="flex justify-center gap-8 mb-12">
             {currentQ.pairs.map((pair, index) => (
               <div key={index} className="flex flex-col items-center gap-2">
@@ -64,7 +70,6 @@ export default function PerceptualSpeedPage() {
             </button>
           ))}
         </div>
-
       </div>
     </TaskLayout>
   );
