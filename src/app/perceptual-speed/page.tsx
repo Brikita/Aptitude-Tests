@@ -9,7 +9,7 @@ import {
 } from "@/utils/perceptualSpeedLogic";
 
 export default function PerceptualSpeedPage() {
-  const { incrementScore, decrementScore, setCurrentTask } = useGameStore();
+  const { incrementScore, setCurrentTask } = useGameStore();
   const [currentQ, setCurrentQ] = useState<PerceptualSpeedQuestion | null>(
     null
   );
